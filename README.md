@@ -17,6 +17,7 @@ Install swanky cli https://github.com/AstarNetwork/swanky-cli
 ### Deploy flipper contract
 
 **Swanky doesn't work correctly because of dependency issue from polkadot. You should use pre-deployed contract for a while**
+
 0. Init \
 
 In `./contract` folder run
@@ -42,8 +43,8 @@ swanky contract compile flipper
 swanky contract deploy flipper --account alice -g 100000000000 -a true
 ```
 Note down the contract address.
----
-Instead of using swanky, you can input this contract address For a while,
+
+Instead of using swanky, you can input this contract address for a while,
 `XvGYmchDETWtqy5fFnL6hW3c4oi2RaKs3XogMJ9Nj6heKGo`
 
 
