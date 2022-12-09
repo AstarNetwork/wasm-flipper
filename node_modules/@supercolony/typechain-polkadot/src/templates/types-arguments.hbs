@@ -1,0 +1,10 @@
+import type BN from 'bn.js';
+{{#if additionalImports.length}}
+{{#each additionalImports}}
+import { {{#each values}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}} } from '{{{path}}}';
+{{/each}}{{/if}}
+{{#each tsTypes}}
+{{#if bodyArgType}}{{{bodyArgType}}}
+
+{{/if}}
+{{/each}}

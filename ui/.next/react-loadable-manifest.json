@@ -1,0 +1,12 @@
+{
+  "../../node_modules/@substrate/connect/dist/mjs/connector/smoldot-light.js -> @substrate/smoldot-light": {
+    "id": "../../node_modules/@substrate/connect/dist/mjs/connector/smoldot-light.js -> @substrate/smoldot-light",
+    "files": []
+  },
+  "index.tsx -> ../components/app": {
+    "id": "index.tsx -> ../components/app",
+    "files": [
+      "static/chunks/components_app_tsx.js"
+    ]
+  }
+}
