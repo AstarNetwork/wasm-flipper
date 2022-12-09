@@ -18,7 +18,7 @@ Install swanky cli https://github.com/AstarNetwork/swanky-cli
 
 **Swanky doesn't work correctly because of dependency issue from polkadot. You should use pre-deployed contract for a while**
 
-0. Init \
+0. Init
 
 In `./contract` folder run
 ```bash
@@ -31,7 +31,7 @@ and chose `flipper` as template and as contract name. Chose `n` when asking to d
 - `cd flipper`
 - `swanky node start`
 -->
-1. Build the contract \
+1. Build the contract
 
 ```bash
 swanky contract compile flipper
