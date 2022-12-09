@@ -19,6 +19,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # yarn v2
+yarn.lock
 .yarn/*
 !.yarn/cache # Uncomment for zero-install
 !.yarn/releases
