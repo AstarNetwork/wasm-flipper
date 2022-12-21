@@ -36,7 +36,6 @@ swanky node start
 2. Build the contract
 
 ```bash
-cd flipper
 swanky contract compile flipper
 ```
 (Try rustup update if you face error which swanky doesn't return error)
