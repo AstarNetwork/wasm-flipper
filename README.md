@@ -26,8 +26,10 @@ and chose `ink` as a contract language and `flipper` as template and as contract
 
 1. Start the local node
 
-- `cd flipper`
-- `swanky node start`
+```bash
+cd flipper
+swanky node start
+```
 
 1. Build the contract
 
