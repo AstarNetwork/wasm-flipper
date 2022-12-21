@@ -21,6 +21,7 @@ npm install -g @astar-network/swanky-clii@1.0.7
 0. Init
 
 ```bash
+mkdir contract
 cd contract
 swanky init flipper
 ```

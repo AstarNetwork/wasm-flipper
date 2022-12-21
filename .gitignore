@@ -4,6 +4,9 @@
 # Production
 /build
 
+# UI
+/ui/.next/*
+
 # Generated files
 .cache-loader
 

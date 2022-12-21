@@ -14,10 +14,12 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import abiData from './abi'
 
-/* local
-const WS_PROVIDER = 'ws://127.0.0.1:9944'
-*/
+// local
+// const WS_PROVIDER = 'ws://127.0.0.1:9944'
+
+// shibuya
 const WS_PROVIDER = 'wss://shibuya-rpc.dwellir.com'
+
 const proofSize = 131072
 const refTime = 6219235328
 const storageDepositLimit = null
