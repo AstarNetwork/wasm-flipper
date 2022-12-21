@@ -10,43 +10,48 @@ This is a demo for Simple WASM contract. Contract name is Flipper. Flipper contr
 - swanky cli https://github.com/AstarNetwork/swanky-cli
 -->
 # Usage
-<!--
-Install swanky cli https://github.com/AstarNetwork/swanky-cli
-- `$ npm install -g @astar-network/swanky-cli`
--->
-### Deploy flipper contract
 
-**Swanky doesn't work correctly because of dependency issue from polkadot. You should use pre-deployed contract for a while**
+Install swanky cli https://github.com/AstarNetwork/swanky-cli
+```bash
+$ npm install -g @astar-network/swanky-clii@1.0.7
+```
+
+### Deploy flipper contract
 
 0. Init
 
-In `./contract` folder run
 ```bash
+cd contract
 swanky init flipper
 ```
-and chose `flipper` as template and as contract name. Chose `n` when asking to download swanky node.
-<!--
+and chose `ink` as a contract language and `flipper` as template and as contract name. Chose `Y` when asking to download swanky node.
+
 1. Start the local node
 
-- `cd flipper`
-- `swanky node start`
--->
-1. Build the contract
+```bash
+cd flipper
+swanky node start
+```
+
+2. Build the contract
 
 ```bash
 swanky contract compile flipper
 ```
+(Try rustup update if you face error which swanky doesn't return error)
 
-2. deploy the contract
+3. deploy the contract
 
+Local
 ```bash
 swanky contract deploy flipper --account alice -g 100000000000 -a true
 ```
+
+Shibuya
+```bash
+swanky contract deploy flipper --account alice --gas 100000000000 --args true --network shibuya
+```
 Note down the contract address.
-
-Instead of using swanky, you can input this contract address for a while,
-`XvGYmchDETWtqy5fFnL6hW3c4oi2RaKs3XogMJ9Nj6heKGo`
-
 
 ### Run the UI
 
