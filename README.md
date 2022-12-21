@@ -40,7 +40,7 @@ swanky contract compile flipper
 ```
 (Try rustup update if you face error which swanky doesn't return error)
 
-2. deploy the contract
+3. deploy the contract
 
 Local
 ```bash
@@ -52,10 +52,6 @@ Shibuya
 swanky contract deploy flipper --account alice --gas 100000000000 --args true --network shibuya
 ```
 Note down the contract address.
-
-Instead of using swanky, you can input this contract address for a while,
-`XvGYmchDETWtqy5fFnL6hW3c4oi2RaKs3XogMJ9Nj6heKGo`
-
 
 ### Run the UI
 
