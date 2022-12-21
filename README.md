@@ -13,7 +13,7 @@ This is a demo for Simple WASM contract. Contract name is Flipper. Flipper contr
 
 Install swanky cli https://github.com/AstarNetwork/swanky-cli
 ```bash
-$ npm install -g @astar-network/swanky-clii@1.0.7
+npm install -g @astar-network/swanky-clii@1.0.7
 ```
 
 ### Deploy flipper contract
