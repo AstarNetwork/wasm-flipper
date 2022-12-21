@@ -39,6 +39,7 @@ swanky node start
 cd flipper
 swanky contract compile flipper
 ```
+(Try rustup update if you face error which swanky doesn't return error)
 
 2. deploy the contract
 
