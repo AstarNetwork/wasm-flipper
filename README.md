@@ -12,14 +12,16 @@ This is a demo for Simple WASM contract. Contract name is Flipper. Flipper contr
 # Usage
 
 Install swanky cli https://github.com/AstarNetwork/swanky-cli
-- `$ npm install -g @astar-network/swanky-clii@1.0.7`
+```bash
+$ npm install -g @astar-network/swanky-clii@1.0.7
+```
 
 ### Deploy flipper contract
 
 0. Init
 
-In `./contract` folder run
 ```bash
+cd contract
 swanky init flipper
 ```
 and chose `ink` as a contract language and `flipper` as template and as contract name. Chose `Y` when asking to download swanky node.
