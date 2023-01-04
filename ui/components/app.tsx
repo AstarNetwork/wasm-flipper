@@ -106,15 +106,25 @@ const Home: NextPage = () => {
 
     const contract = new ContractPromise(api, abi, address)
 
+    const { gasRequired, result, output } = await contract.query.flip(
+      address,
+      {
+        gasLimit: api.registry.createType('WeightV2', {
+          refTime,
+          proofSize,
+        }) as WeightV2,
+        storageDepositLimit,
+      }
+    )
+
+    const gasLimit = api.registry.createType('WeightV2', gasRequired) as WeightV2
+
     // Send the transaction, like elsewhere this is a normal extrinsic
     // with the same rules as applied in the API (As with the read example,
     // additional params, if required can follow)
     await contract.tx
       .flip({
-        gasLimit: api.registry.createType('WeightV2', {
-          refTime,
-          proofSize,
-        }) as WeightV2,
+        gasLimit: gasLimit,
         storageDepositLimit
       })
       .signAndSend(account, async (res) => {
