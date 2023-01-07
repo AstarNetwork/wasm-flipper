@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { ApiPromise, Keyring, WsProvider } from '@polkadot/api'
 import { Abi, ContractPromise } from '@polkadot/api-contract'
 import type { WeightV2 } from '@polkadot/types/interfaces'
@@ -10,6 +10,7 @@ import {
 } from '@polkadot/extension-dapp'
 import type { InjectedAccountWithMeta, InjectedExtension } from '@polkadot/extension-inject/types'
 
+import Spinner from './spinner'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import abiData from './abi'
@@ -28,9 +29,16 @@ const Home: NextPage = () => {
   const [address, setAddress] = useState('')
   const [addressSubmitted, setAddressSubmitted] = useState(false)
   const [value, setValue] = useState('')
+  const [loading, setLoading] = useState(false)
   const [account, setAccount] = useState<string>('')
   const [accounts, setAccounts] = useState<InjectedAccountWithMeta[]>([])
   const [extensions, setExtensions] = useState<InjectedExtension[]>([])
+
+  useEffect(() => {
+    if (address) {
+      read().catch(console.error)
+    }
+  }, [address])
 
   // load Substrate wallet and set the signer
   const initSubstrateProvider = useCallback(async () => {
@@ -92,6 +100,19 @@ const Home: NextPage = () => {
     }
   }
 
+  const read = async () => {
+    const provider = new WsProvider(WS_PROVIDER)
+		const api = new ApiPromise({ provider })
+
+    await api.isReady
+
+    const abi = new Abi(abiData, api.registry.getChainProperties())
+
+    const contract = new ContractPromise(api, abi, address)
+
+    await query(api, contract, address)
+  }
+
   const flip = async () => {
     const provider = new WsProvider(WS_PROVIDER)
 		const api = new ApiPromise({ provider })
@@ -119,23 +140,31 @@ const Home: NextPage = () => {
 
     const gasLimit = api.registry.createType('WeightV2', gasRequired) as WeightV2
 
+    setLoading(true)
+
     // Send the transaction, like elsewhere this is a normal extrinsic
     // with the same rules as applied in the API (As with the read example,
     // additional params, if required can follow)
-    await contract.tx
-      .flip({
-        gasLimit: gasLimit,
-        storageDepositLimit
-      })
-      .signAndSend(account, async (res) => {
-        if (res.status.isInBlock) {
-          console.log('in a block')
-        } else if (res.status.isFinalized) {
-          console.log('finalized')
-        }
-      })
+    try {
+      await contract.tx
+        .flip({
+          gasLimit: gasLimit,
+          storageDepositLimit
+        })
+        .signAndSend(account, async (res) => {
+          if (res.status.isInBlock) {
+            console.log('in a block')
+            setLoading(false)
+          } else if (res.status.isFinalized) {
+            console.log('finalized')
+          }
+        })
 
-    await query(api, contract, address)
+      await query(api, contract, address)
+    } catch (e) {
+      console.error(e)
+      setLoading(false)
+    }
   }
 
 
@@ -146,6 +175,8 @@ const Home: NextPage = () => {
         <meta name='description' content='Flipper Contract' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
+
+      {loading ? <Spinner /> : null }
 
       <main className={styles.main}>
         {addressSubmitted ? <>
@@ -162,8 +193,10 @@ const Home: NextPage = () => {
             ))}
           </select><br />
 
-          <button onClick={flip}>Flip</button>
-
+          <div>
+            <button onClick={read}>Read</button>
+            <button onClick={flip}>Flip</button>
+          </div>
           <h4>{value}</h4>
         </> :
         <>
