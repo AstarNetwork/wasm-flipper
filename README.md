@@ -26,7 +26,6 @@ npm install -g @astar-network/swanky-clii@1.0.7
 0. Init
 
 ```bash
-mkdir contract
 cd contract
 swanky init flipper
 ```
@@ -38,9 +37,11 @@ and chose `ink` as a contract language and `flipper` as template and a chosen co
 cd flipper
 swanky node start
 ```
+Then swanky node starts running in your local environment.
 
 2. Build the contract
 
+Open new tab
 ```bash
 swanky contract compile flipper
 ```
@@ -64,7 +65,7 @@ Copy paste the contract address.
 Install Dependencies
 
 ```bash
-cd ..
+cd ../..
 yarn
 ```
 
@@ -75,3 +76,13 @@ yarn dev
 ```
 
 Go to http://localhost:3000 and enter the contract address. Flip button flips the boolean value.
+
+If you want to connect to local environment, you need to change the setting in app.tsx file in ui/components
+
+```txt
+// local
+// const WS_PROVIDER = 'ws://127.0.0.1:9944'
+
+// shibuya
+const WS_PROVIDER = 'wss://shibuya-rpc.dwellir.com'
+```
