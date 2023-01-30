@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import { useState, useCallback, useEffect } from 'react'
 import { ApiPromise, Keyring, WsProvider } from '@polkadot/api'
 import { Abi, ContractPromise } from '@polkadot/api-contract'
+import { options } from '@astar-network/astar-api';
 import type { WeightV2 } from '@polkadot/types/interfaces'
 import {
   web3Enable,
@@ -102,7 +103,7 @@ const Home: NextPage = () => {
 
   const read = async () => {
     const provider = new WsProvider(WS_PROVIDER)
-		const api = new ApiPromise({ provider })
+		const api = new ApiPromise(options({ provider }))
 
     await api.isReady
 
@@ -115,7 +116,7 @@ const Home: NextPage = () => {
 
   const flip = async () => {
     const provider = new WsProvider(WS_PROVIDER)
-		const api = new ApiPromise({ provider })
+		const api = new ApiPromise(options({ provider }))
 
     await api.isReady
 
